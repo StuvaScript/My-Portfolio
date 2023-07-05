@@ -1,0 +1,335 @@
+:root {
+  --background: #1d1d1d;
+  --dark-grey: rgb(107, 107, 107);
+  --light-grey: rgb(153, 153, 153);
+  --light: white;
+  --accent-color: rgb(8, 253, 216);
+}
+
+@font-face {
+  font-family: 'Allura';
+  src: url(./fonts/Allura/Allura-Regular.ttf);
+}
+
+*::before {
+  font-family: Allura;
+  color: var(--dark-grey);
+  font-size: 1.25rem;
+  font-weight: 100;
+  position: absolute;
+  left: -1rem;
+  top: -1.25rem;
+}
+
+*::after {
+  font-family: Allura;
+  color: var(--dark-grey);
+  font-size: 1.25rem;
+  font-weight: 100;
+  position: absolute;
+  left: -1rem;
+  bottom: -1.5rem;
+}
+
+.light-grey {
+  color: var(--light-grey);
+}
+
+.accent {
+  color: var(--accent-color);
+}
+
+/* TODO Use max width and text center or flex center when making larger responsive design. That way the content is only so big and not stretching the entire length of the screen */
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--background) url(./images/navy.png);
+  color: var(--light);
+  padding: 0px 30px;
+  position: relative;
+  font-size: 0.9rem;
+}
+
+body > * {
+  height: 100vh;
+}
+
+body::before {
+  content: '<body>';
+  top: 0.5rem;
+  left: 0.8rem;
+}
+
+body::after {
+  content: '</body>';
+  bottom: 0.5rem;
+  left: 0.8rem;
+}
+
+/* ! ``**Hero**`` */
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 50px;
+}
+
+#profile-img {
+  border-radius: 250px 750px 250px 750px / 750px 250px 750px 250px;
+  height: min(80vw, 300px);
+  min-width: 150px;
+  max-width: 300px;
+  object-fit: cover;
+  object-position: center 30%;
+  animation: border-slide 5s ease-in-out infinite alternate;
+}
+
+@keyframes border-slide {
+  50% {
+    border-radius: 750px 550px 350px 750px / 350px 750px 550px 450px;
+  }
+  100% {
+    border-radius: 750px 250px 750px 250px / 250px 750px 250px 750px;
+  }
+}
+
+h1 {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  font-size: 40px;
+  margin: 0;
+}
+
+h1::before {
+  content: '<h1>';
+}
+
+h1::after {
+  content: '</h1>';
+}
+
+/* ! ``**About**`` */
+
+.about {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  height: auto;
+  min-height: 100vh;
+  padding-bottom: 50px;
+}
+
+h2 {
+  color: var(--accent-color);
+  position: relative;
+  font-size: 40px;
+}
+
+h2::before {
+  content: '<h2>';
+}
+
+h2::after {
+  content: '</h2>';
+}
+
+p {
+  position: relative;
+  line-height: 1.5rem;
+  letter-spacing: 0.3px;
+}
+
+p:first-of-type:before {
+  content: '<p>';
+}
+
+p:last-of-type:after {
+  content: '</p>';
+}
+
+h3 {
+  color: var(--accent-color);
+  position: relative;
+  font-size: 18px;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: inherit;
+  text-decoration: none;
+}
+
+.tech-list {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 0.6rem;
+  column-gap: 2rem;
+  justify-content: center;
+}
+
+.tech-list li {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.tech-list img {
+  width: 50px;
+}
+
+.tech-name-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ! ``**Projects**`` */
+
+.projects {
+  height: auto;
+  min-height: 100vh;
+  padding-bottom: 50px;
+}
+
+.container {
+  margin: 50px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.card {
+  position: relative;
+  z-index: 0;
+  opacity: 0.5;
+  transform: scale(1);
+  transition-duration: 0.35s;
+  transition-timing-function: ease-in-out;
+}
+
+.card:hover {
+  z-index: 1;
+  opacity: 1;
+  transform: scale(1.1);
+  transition-duration: 0.35s;
+  transition-timing-function: ease-in-out;
+}
+
+.card > img {
+  width: 100%;
+  height: 100%;
+}
+
+.card:hover > img {
+  border-radius: 3px;
+  transition-duration: 0.35s;
+  transition-timing-function: ease-in-out;
+}
+
+.img-info {
+  width: 70%;
+  height: auto;
+  padding: 10px;
+  color: var(--light);
+  font-size: 1.25rem;
+  text-align: center;
+  background: rgba(29, 29, 29, 0.95);
+  border-radius: 5px;
+  opacity: 0;
+  transition-duration: 0.35s;
+  transition-timing-function: ease-in-out;
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.card:hover > .img-info {
+  opacity: 1;
+  transition-duration: 0.35s;
+  transition-timing-function: ease-in-out;
+}
+
+/* ! ``**Resume**`` */
+
+.resume-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.res-anchor {
+  height: 50%;
+}
+
+.res-pic {
+  height: 100%;
+  border-radius: 5px;
+  transform: scale(1);
+  transition-duration: 0.35s;
+  transition-timing-function: ease-in-out;
+}
+
+.res-pic:hover {
+  border-radius: 50px 10px;
+  transform: scale(1.1);
+  transition-duration: 0.35s;
+  transition-timing-function: ease-in-out;
+}
+
+/* ! ``**Contact**`` */
+
+.contact-container {
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.contact-container img {
+  width: 15vh;
+  transform: scale(1);
+  transition-duration: 0.35s;
+  transition-timing-function: ease-in-out;
+}
+
+.contact-container img:hover {
+  transform: scale(1.1);
+  transition-duration: 0.35s;
+  transition-timing-function: ease-in-out;
+}
+
+/* ! ``**Media Queries**`` */
+
+@media (max-width: 630px) {
+  .card {
+    opacity: 1;
+  }
+
+  .card:hover {
+    transform: scale(1);
+  }
+
+  .img-info {
+    opacity: 1;
+  }
+
+  .card:hover > img {
+    border-radius: inherit;
+  }
+}
